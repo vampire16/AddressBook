@@ -1,5 +1,6 @@
 package com.bridgelabz.utility;
 
+import com.bridgelabz.exception.AddressBookException;
 import com.bridgelabz.pojo.Person;
 
 import java.io.File;
@@ -18,11 +19,17 @@ public abstract class AddressBook {
 
     public abstract int removePerson(int index) throws IOException;
 
-    public abstract ArrayList<Person> sortByName() throws IOException;
+    public abstract List<Person> sortByName() throws IOException;
 
-    public abstract ArrayList<Person> sortByZip() throws IOException;
+    public abstract List<Person> sortByZip() throws IOException;
 
     public abstract File getFile();
 
-    public abstract void printAll() throws IOException;
+    public abstract boolean printAll() throws IOException;
+
+    public abstract void createNewAddressBook(String fileName) throws AddressBookException;
+
+    public abstract boolean openExistingAddressBook(String fileName) throws IOException;
+
+    public abstract boolean saveAs(String fileName, String newFileName);
 }
