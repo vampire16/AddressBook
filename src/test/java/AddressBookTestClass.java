@@ -1,4 +1,5 @@
 import com.bridgelabz.controller.AddressBookController;
+import com.bridgelabz.exception.AddressBookException;
 import com.bridgelabz.pojo.Person;
 import com.bridgelabz.utility.FileSystem;
 import org.junit.Assert;
@@ -7,7 +8,6 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AddressBookTestClass {
@@ -41,7 +41,7 @@ public class AddressBookTestClass {
     public void givenNewPersonInfo1_WhenAddInFile_ShouldReturnFile() throws IOException {
         person = new Person("v","hake","E-1","panvel","maharashtra","410218","8939729377");
         list = controller.addPerson(person);
-        Assert.assertEquals("maharashtra",list.get(1).getState());
+        Assert.assertEquals("v",list.get(2).getFirstName());
     }
 
     @Test
@@ -77,27 +77,60 @@ public class AddressBookTestClass {
 
     @Test
     public void givenFileName_WhenSortedByName_ShouldReturnSortedData() throws IOException {
-        ArrayList<Person> list = controller.sortByName();
+        list = controller.sortByName();
         Assert.assertEquals("bharat",list.get(0).getFirstName());
     }
 
     @Test
     public void givenFileName_WhenSortedByZip_ShouldReturnSortedData() throws IOException {
-        ArrayList<Person> list = controller.sortByZip();
+        list = controller.sortByZip();
         Assert.assertEquals("410217",list.get(0).getZip());
     }
 
     @Test
-    public void givenNewFileName_ShouldReturnFileInfo() throws IOException {
+    public void givenNewFileName_ShouldReturnFileInfo() throws IOException, AddressBookException {
         String fileName = "XYZ";
-        fileSystem = new FileSystem(fileName);
+        controller.createNewAddressBook(fileName);
         person = new Person("vaibhav","hake","E-1","kalamboli","maharashtra","410217","8939729399");
-        List<Person> list = controller.addPerson(person);
+        list = controller.addPerson(person);
         Assert.assertEquals("8939729399",list.get(0).getPhone());
     }
 
     @Test
+    public void givenNewFileName_WhenAlreadyExist_ShouldReturnException() throws IOException{
+        String fileName = "XYZ";
+        try {
+            controller.createNewAddressBook(fileName);
+        } catch (AddressBookException e) {
+            Assert.assertEquals(AddressBookException.Exception.AlreadyExist,e.type);
+        }
+    }
+
+    @Test
     public void givenFileName_ShouldReturnAllData() throws IOException {
-        controller.printAll();
+        boolean isPrinted = controller.printAll();
+        Assert.assertTrue(isPrinted);
+    }
+
+    @Test
+    public void givenFileName_IfAlreadyExists_ShouldReturnTrue() throws IOException {
+        String fileName ="ABC";
+        boolean isExist = controller.openExistingAddressBook(fileName);
+        Assert.assertTrue(isExist);
+    }
+
+    @Test
+    public void givenFileName_IfDoesNotExists_ShouldReturnFalse() throws IOException {
+        String fileName ="ABCD";
+        boolean isExist = controller.openExistingAddressBook(fileName);
+        Assert.assertFalse(isExist);
+    }
+
+    @Test
+    public void givenFileName_WhenSaveAsAnotherName_ShouldReturnTrue() throws IOException {
+        String fileName = "XYZ";
+        String newFileName = "DEF";
+        boolean isChangedFileName = controller.saveAs(fileName, newFileName);
+        Assert.assertTrue(isChangedFileName);
     }
 }
