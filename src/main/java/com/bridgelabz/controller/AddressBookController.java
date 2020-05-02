@@ -1,5 +1,6 @@
 package com.bridgelabz.controller;
 
+import com.bridgelabz.exception.AddressBookException;
 import com.bridgelabz.pojo.Person;
 import com.bridgelabz.utility.AddressBook;
 import com.bridgelabz.utility.FileSystem;
@@ -81,7 +82,7 @@ public class AddressBookController extends AddressBook {
     }
 
     @Override
-    public ArrayList<Person> sortByName() throws IOException {
+    public List<Person> sortByName() throws IOException {
         file = FileSystem.getFile();
         list = this.readData(file);
         list.sort(Comparator.comparing(Person::getFirstName));
@@ -90,7 +91,7 @@ public class AddressBookController extends AddressBook {
     }
 
     @Override
-    public ArrayList<Person> sortByZip() throws IOException {
+    public List<Person> sortByZip() throws IOException {
         file = FileSystem.getFile();
         list = this.readData(file);
         list.sort(Comparator.comparing(Person::getZip));
@@ -104,10 +105,40 @@ public class AddressBookController extends AddressBook {
     }
 
     @Override
-    public void printAll() throws IOException {
+    public boolean printAll() throws IOException {
         file = FileSystem.getFile();
         list = this.readData(file);
         list.forEach(person -> System.out.println(person.getFirstName()+" "+person.getLastName()));
+        return true;
     }
 
+    @Override
+    public void createNewAddressBook(String fileName) throws AddressBookException {
+        File file = new File("src/test/resources/"+fileName+".json");
+        if(file.exists()){
+            throw new AddressBookException(AddressBookException.Exception.AlreadyExist);
+        }else {
+            new FileSystem(fileName);
+        }
+    }
+
+    @Override
+    public boolean openExistingAddressBook(String fileName) throws IOException {
+        File file = new File("src/test/resources/"+fileName+".json");
+        if(file.exists()) {
+            file = FileSystem.getFile();
+            list = this.readData(file);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean saveAs(String fileName, String newFileName) {
+        File file = new File("src/test/resources/"+fileName+".json");
+        File newFile = new File("src/test/resources/"+newFileName+".json");
+        if(file.exists())
+            return file.renameTo(newFile);
+        return false;
+    }
 }
