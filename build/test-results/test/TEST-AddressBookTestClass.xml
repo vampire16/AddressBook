@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="AddressBookTestClass" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-02T05:13:36" hostname="DESKTOP-7UGSU5P" time="0.226">
+<testsuite name="AddressBookTestClass" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-04T03:54:19" hostname="DESKTOP-7UGSU5P" time="0.396">
   <properties/>
-  <testcase name="givenFileName_WhenSaveAsAnotherName_ShouldReturnTrue" classname="AddressBookTestClass" time="0.226"/>
+  <testcase name="givenNewFileName_ShouldReturnFileInfo" classname="AddressBookTestClass" time="0.396"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
