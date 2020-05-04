@@ -9,9 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 
 public class AddressBookController extends AddressBook {
@@ -24,7 +22,8 @@ public class AddressBookController extends AddressBook {
     }
 
     public ArrayList<Person> readData(File file) throws IOException {
-        return objectMapper.readValue(file, new TypeReference<ArrayList<Person>>() {});
+        return objectMapper.readValue(file, new TypeReference<ArrayList<Person>>() {
+        });
     }
 
     @Override
@@ -61,14 +60,14 @@ public class AddressBookController extends AddressBook {
     public ArrayList<Person> updatePerson(int index, Person person) throws IOException {
         file = FileSystem.getFile();
         list = this.readData(file);
-        list.get(index).setFirstName(person.getFirstName());
-        list.get(index).setLastName(person.getLastName());
+//        list.get(index).setFirstName(person.getFirstName());
+//        list.get(index).setLastName(person.getLastName());
         list.get(index).setAddress(person.getAddress());
         list.get(index).setCity(person.getCity());
         list.get(index).setState(person.getState());
         list.get(index).setZip(person.getZip());
         list.get(index).setPhone(person.getPhone());
-        this.writeData(file,list);
+        this.writeData(file, list);
         return list;
     }
 
@@ -77,7 +76,7 @@ public class AddressBookController extends AddressBook {
         file = FileSystem.getFile();
         list = this.readData(file);
         list.remove(index);
-        this.writeData(file,list);
+        this.writeData(file, list);
         return this.getCountOfRecords();
     }
 
@@ -86,7 +85,7 @@ public class AddressBookController extends AddressBook {
         file = FileSystem.getFile();
         list = this.readData(file);
         list.sort(Comparator.comparing(Person::getFirstName));
-        this.writeData(file,list);
+        this.writeData(file, list);
         return list;
     }
 
@@ -95,7 +94,7 @@ public class AddressBookController extends AddressBook {
         file = FileSystem.getFile();
         list = this.readData(file);
         list.sort(Comparator.comparing(Person::getZip));
-        this.writeData(file,list);
+        this.writeData(file, list);
         return list;
     }
 
@@ -108,24 +107,26 @@ public class AddressBookController extends AddressBook {
     public boolean printAll() throws IOException {
         file = FileSystem.getFile();
         list = this.readData(file);
-        list.forEach(person -> System.out.println(person.getFirstName()+" "+person.getLastName()));
+        list.forEach(person -> System.out.println(person.getFirstName() + " " + person.getLastName() + " " +
+                person.getAddress() + " " + person.getCity() + " " + person.getState() + " " + person.getZip() + " " +
+                person.getPhone()));
         return true;
     }
 
     @Override
     public void createNewAddressBook(String fileName) throws AddressBookException {
-        File file = new File("src/test/resources/"+fileName+".json");
-        if(file.exists()){
+        File file = new File("src/test/resources/" + fileName + ".json");
+        if (file.exists()) {
             throw new AddressBookException(AddressBookException.Exception.AlreadyExist);
-        }else {
+        } else {
             new FileSystem(fileName);
         }
     }
 
     @Override
     public boolean openExistingAddressBook(String fileName) throws IOException {
-        File file = new File("src/test/resources/"+fileName+".json");
-        if(file.exists()) {
+        File file = new File("src/test/resources/" + fileName + ".json");
+        if (file.exists()) {
             file = FileSystem.getFile();
             list = this.readData(file);
             return true;
@@ -135,10 +136,22 @@ public class AddressBookController extends AddressBook {
 
     @Override
     public boolean saveAs(String fileName, String newFileName) {
-        File file = new File("src/test/resources/"+fileName+".json");
-        File newFile = new File("src/test/resources/"+newFileName+".json");
-        if(file.exists())
+        File file = new File("src/test/resources/" + fileName + ".json");
+        File newFile = new File("src/test/resources/" + newFileName + ".json");
+        if (file.exists())
             return file.renameTo(newFile);
         return false;
+    }
+
+    public Map<Integer, File> getAddressBooks() {
+        int count = 1;
+        Map<Integer, File> files = new LinkedHashMap<>();
+        File file = new File(FileSystem.PATH);
+        File[] listOfFiles = file.listFiles();
+        for (File book : listOfFiles) {
+            files.put(count, book);
+            count++;
+        }
+        return files;
     }
 }
