@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d61740fc-c26f-4e02-acff-579d73344e75" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bridgelabz/controller/AddressBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bridgelabz/controller/AddressBookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bridgelabz/controller/AddressBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bridgelabz/service/AddressBookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bridgelabz/pojo/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bridgelabz/pojo/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bridgelabz/service/AddressBookApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bridgelabz/controller/AddressBookApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bridgelabz/utility/AddressBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bridgelabz/service/AddressBook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/AddressBookTestClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/AddressBookTestClass.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,11 +54,11 @@
   </component>
   <component name="RunManager" selected="Application.AddressBookApplication">
     <configuration name="AddressBookApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.bridgelabz.service.AddressBookApplication" />
+      <option name="MAIN_CLASS_NAME" value="com.bridgelabz.controller.AddressBookApplication" />
       <module name="AddressBookProblem.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.bridgelabz.service.*" />
+          <option name="PATTERN" value="com.bridgelabz.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
