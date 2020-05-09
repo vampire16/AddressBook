@@ -1,4 +1,4 @@
-import com.bridgelabz.controller.AddressBookController;
+import com.bridgelabz.service.AddressBookService;
 import com.bridgelabz.exception.AddressBookException;
 import com.bridgelabz.pojo.Person;
 import com.bridgelabz.utility.FileSystem;
@@ -11,14 +11,14 @@ import java.io.IOException;
 import java.util.List;
 
 public class AddressBookTestClass {
-    AddressBookController controller;
+    AddressBookService controller;
     Person person;
     FileSystem fileSystem;
     List<Person> list;
 
     @Before
     public void setUp() throws Exception {
-        controller = new AddressBookController();
+        controller = new AddressBookService();
         String fileName = "ABC";
         fileSystem = new FileSystem(fileName);
     }

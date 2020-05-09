@@ -1,8 +1,7 @@
-package com.bridgelabz.controller;
+package com.bridgelabz.service;
 
 import com.bridgelabz.exception.AddressBookException;
 import com.bridgelabz.pojo.Person;
-import com.bridgelabz.utility.AddressBook;
 import com.bridgelabz.utility.FileSystem;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,7 +11,7 @@ import java.io.IOException;
 import java.util.*;
 
 
-public class AddressBookController extends AddressBook {
+public class AddressBookService extends AddressBook {
     ObjectMapper objectMapper = new ObjectMapper();
     File file = null;
     ArrayList<Person> list = null;

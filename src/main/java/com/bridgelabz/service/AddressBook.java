@@ -1,4 +1,4 @@
-package com.bridgelabz.utility;
+package com.bridgelabz.service;
 
 import com.bridgelabz.exception.AddressBookException;
 import com.bridgelabz.pojo.Person;

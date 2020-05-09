@@ -1,6 +1,6 @@
-package com.bridgelabz.service;
+package com.bridgelabz.controller;
 
-import com.bridgelabz.controller.AddressBookController;
+import com.bridgelabz.service.AddressBookService;
 import com.bridgelabz.exception.AddressBookException;
 import com.bridgelabz.pojo.Person;
 import com.bridgelabz.utility.FileSystem;
@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class AddressBookApplication {
     static Scanner scanner = new Scanner(System.in);
-    static AddressBookController controller = new AddressBookController();
+    static AddressBookService controller = new AddressBookService();
     static AddressBookApplication application = new AddressBookApplication();
 
     public static void main(String[] args) throws IOException, AddressBookException {
