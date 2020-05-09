@@ -17,10 +17,12 @@ public class AddressBookController extends AddressBook {
     File file = null;
     ArrayList<Person> list = null;
 
+    //    TO WRITE DATA FROM JSON FILE
     public void writeData(File file, ArrayList<Person> list) throws IOException {
         objectMapper.writeValue(file, list);
     }
 
+    //    TO READ DATA FROM JSON FILE
     public ArrayList<Person> readData(File file) throws IOException {
         return objectMapper.readValue(file, new TypeReference<ArrayList<Person>>() {
         });
@@ -60,8 +62,6 @@ public class AddressBookController extends AddressBook {
     public ArrayList<Person> updatePerson(int index, Person person) throws IOException {
         file = FileSystem.getFile();
         list = this.readData(file);
-//        list.get(index).setFirstName(person.getFirstName());
-//        list.get(index).setLastName(person.getLastName());
         list.get(index).setAddress(person.getAddress());
         list.get(index).setCity(person.getCity());
         list.get(index).setState(person.getState());
@@ -143,6 +143,7 @@ public class AddressBookController extends AddressBook {
         return false;
     }
 
+    //    TO GET ADDRESS BOOKS NAME
     public Map<Integer, File> getAddressBooks() {
         int count = 1;
         Map<Integer, File> files = new LinkedHashMap<>();

@@ -20,6 +20,7 @@ public class AddressBookApplication {
         application.gui();
     }
 
+    //    METHOD TO GET USER INTERFACE
     public void gui() throws AddressBookException, IOException {
         while (true) {
             System.out.println("Enter index number");
@@ -90,6 +91,7 @@ public class AddressBookApplication {
         }
     }
 
+    //    TO TAKE INFORMATION FROM USER
     public Person info() {
         System.out.println("Enter first name : ");
         String firstName = scanner.next();
