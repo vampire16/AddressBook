@@ -1,13 +1,13 @@
 package com.bridgelabz.pojo;
 
 public class Person {
-    String firstName;
-    String lastName;
-    String address;
-    String city;
-    String state;
-    String zip;
-    String phone;
+    private String firstName;
+    private String lastName;
+    private String address;
+    private String city;
+    private String state;
+    private String zip;
+    private String phone;
 
     public Person() {
     }
